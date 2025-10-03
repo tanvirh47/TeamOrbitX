@@ -1,0 +1,380 @@
+
+> Web Dashboard Interface Design@0.1.0 dev:full
+> concurrently -k "npm run dev:backend" "npm run dev:frontend"
+
+[0] 
+[0] > Web Dashboard Interface Design@0.1.0 dev:backend
+[0] > .\.venv\Scripts\python.exe -m uvicorn backend.main:app --reload --port 8000
+[0] 
+[1] 
+[1] > Web Dashboard Interface Design@0.1.0 dev:frontend
+[1] > vite
+[1] 
+[0] INFO:     Will watch for changes in these directories: ['C:\\Users\\User\\Downloads\\Web Dashboard Interface Design (2)']
+[0] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[0] INFO:     Started reloader process [15764] using WatchFiles
+[1] Port 3000 is in use, trying another one...
+[1] Port 3001 is in use, trying another one...
+[1] 
+[1]   [32m[1mVITE[22m v6.3.5[39m  [2mready in [0m[1m1601[22m[2m[0m ms[22m
+[1] 
+[1]   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m3002[22m/[39m
+[1] [2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+[0] Process SpawnProcess-1:
+[0] Traceback (most recent call last):
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+[0]     self.run()
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+[0]     self._target(*self._args, **self._kwargs)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+[0]     target(sockets=sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 65, in run
+[0]     return asyncio.run(self.serve(sockets=sockets))
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+[0]     return runner.run(main)
+[0]            ^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+[0]     return self._loop.run_until_complete(task)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+[0]     return future.result()
+[0]            ^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 69, in serve
+[0]     await self._serve(sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 76, in _serve
+[0]     config.load()
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\config.py", line 434, in load
+[0]     self.loaded_app = import_from_string(self.app)
+[0]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+[0]     module = importlib.import_module(module_str)
+[0]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+[0]     return _bootstrap._gcd_import(name[level:], package, level)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[0]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[0]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[0]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+[0]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+[0]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\main.py", line 10, in <module>
+[0]     from . import config, models
+[0] ImportError: cannot import name 'config' from 'backend' (C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\__init__.py)
+[0] WARNING:  WatchFiles detected changes in 'config.py'. Reloading...
+[0] Process SpawnProcess-2:
+[0] Traceback (most recent call last):
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+[0]     self.run()
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+[0]     self._target(*self._args, **self._kwargs)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+[0]     target(sockets=sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 65, in run
+[0]     return asyncio.run(self.serve(sockets=sockets))
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+[0]     return runner.run(main)
+[0]            ^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+[0]     return self._loop.run_until_complete(task)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+[0]     return future.result()
+[0]            ^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 69, in serve
+[0]     await self._serve(sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 76, in _serve
+[0]     config.load()
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\config.py", line 434, in load
+[0]     self.loaded_app = import_from_string(self.app)
+[0]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+[0]     module = importlib.import_module(module_str)
+[0]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+[0]     return _bootstrap._gcd_import(name[level:], package, level)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[0]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[0]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[0]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+[0]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+[0]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\main.py", line 10, in <module>
+[0]     from . import config, models
+[0] ImportError: cannot import name 'config' from 'backend' (C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\__init__.py)
+[0] WARNING:  WatchFiles detected changes in 'backend\services\nasa.py'. Reloading...
+[0] Process SpawnProcess-3:
+[0] Traceback (most recent call last):
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+[0]     self.run()
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+[0]     self._target(*self._args, **self._kwargs)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+[0]     target(sockets=sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 65, in run
+[0]     return asyncio.run(self.serve(sockets=sockets))
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+[0]     return runner.run(main)
+[0]            ^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+[0]     return self._loop.run_until_complete(task)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+[0]     return future.result()
+[0]            ^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 69, in serve
+[0]     await self._serve(sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 76, in _serve
+[0]     config.load()
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\config.py", line 434, in load
+[0]     self.loaded_app = import_from_string(self.app)
+[0]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+[0]     module = importlib.import_module(module_str)
+[0]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+[0]     return _bootstrap._gcd_import(name[level:], package, level)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[0]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[0]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[0]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+[0]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+[0]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\main.py", line 10, in <module>
+[0]     from . import config, models
+[0] ImportError: cannot import name 'config' from 'backend' (C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\__init__.py)
+[0] WARNING:  WatchFiles detected changes in 'config.py'. Reloading...
+[0] WARNING:  WatchFiles detected changes in 'schemas.py', 'database.py', 'models.py'. Reloading...
+[1] Terminate batch job (Y/N)? Terminate batch job (Y/N)? Terminate batch job (Y/N)? 
+npm run dev:frontend exited with code 1
+--> Sending SIGTERM to other processes..
+[0] Process SpawnProcess-4:
+[0] Traceback (most recent call last):
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+[0]     self.run()
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+[0]     self._target(*self._args, **self._kwargs)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+[0]     target(sockets=sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 65, in run
+[0]     return asyncio.run(self.serve(sockets=sockets))
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+[0]     return runner.run(main)
+[0]            ^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+[0]     return self._loop.run_until_complete(task)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+[0]     return future.result()
+[0]            ^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 69, in serve
+[0]     await self._serve(sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 76, in _serve
+[0]     config.load()
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\config.py", line 434, in load
+[0]     self.loaded_app = import_from_string(self.app)
+[0]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+[0]     module = importlib.import_module(module_str)
+[0]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+[0]     return _bootstrap._gcd_import(name[level:], package, level)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[0]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[0]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[0]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+[0]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+[0]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\main.py", line 10, in <module>
+[0]     from . import config, models
+[0] ImportError: cannot import name 'config' from 'backend' (C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\__init__.py)
+[0] Process SpawnProcess-5:
+[0] Traceback (most recent call last):
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+[0]     self.run()
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+[0]     self._target(*self._args, **self._kwargs)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+[0]     target(sockets=sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 65, in run
+[0]     return asyncio.run(self.serve(sockets=sockets))
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+[0]     return runner.run(main)
+[0]            ^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+[0]     return self._loop.run_until_complete(task)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+[0]     return future.result()
+[0]            ^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 69, in serve
+[0]     await self._serve(sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 76, in _serve
+[0]     config.load()
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\config.py", line 434, in load
+[0]     self.loaded_app = import_from_string(self.app)
+[0]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+[0]     module = importlib.import_module(module_str)
+[0]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+[0]     return _bootstrap._gcd_import(name[level:], package, level)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[0]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[0]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[0]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+[0]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+[0]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\main.py", line 10, in <module>
+[0]     from . import config, models
+[0] ImportError: cannot import name 'config' from 'backend' (C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\__init__.py)
+File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[0]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[0]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[0]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+[0]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+[0]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\main.py", line 10, in <module>
+[0]     from . import config, models
+[0] ImportError: cannot import name 'config' from 'backend' (C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\__init__.py)
+[0] WARNING:  WatchFiles detected changes in 'backend\services\nasa.py'. Reloading...
+[0] Process SpawnProcess-5:
+[0] Traceback (most recent call last):
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+[0]     self.run()
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+[0]     self._target(*self._args, **self._kwargs)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+[0]     target(sockets=sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 65, in run
+[0]     return asyncio.run(self.serve(sockets=sockets))
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+[0]     return runner.run(main)
+[0]            ^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+[0]     return self._loop.run_until_complete(task)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+[0]     return future.result()
+[0]            ^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 69, in serve
+[0]     await self._serve(sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 76, in _serve
+[0]     config.load()
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\config.py", line 434, in load
+[0]     self.loaded_app = import_from_string(self.app)
+[0]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+[0]     module = importlib.import_module(module_str)
+[0]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+[0]     return _bootstrap._gcd_import(name[level:], package, level)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[0]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[0]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[0]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+[0]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+[0]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\main.py", line 10, in <module>
+[0]     from . import config, models
+[0] ImportError: cannot import name 'config' from 'backend' (C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\__init__.py)
+[0] WARNING:  WatchFiles detected changes in 'config.py'. Reloading...
+[0] WARNING:  WatchFiles detected changes in 'schemas.py', 'database.py', 'models.py'. Reloading...
+Terminate batch job (Y/N)? 
+[0] Terminate batch job (Y/N)? Terminate batch job (Y/N)? npm run dev:frontend exited with code 1
+--> Sending SIGTERM to other processes..
+[0] Process SpawnProcess-6:
+[0] Traceback (most recent call last):
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+[0]     self.run()
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+[0]     self._target(*self._args, **self._kwargs)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+[0]     target(sockets=sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 65, in run
+[0]     return asyncio.run(self.serve(sockets=sockets))
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+[0]     return runner.run(main)
+[0]            ^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+[0]     return self._loop.run_until_complete(task)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+[0]     return future.result()
+[0]            ^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 69, in serve
+[0]     await self._serve(sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 76, in _serve
+[0]     config.load()
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\config.py", line 434, in load
+[0]     self.loaded_app = import_from_string(self.app)
+[0]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+[0]     module = importlib.import_module(module_str)
+[0]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+[0]     return _bootstrap._gcd_import(name[level:], package, level)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[0]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[0]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[0]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+[0]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+[0]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\main.py", line 10, in <module>
+[0]     from . import config, models
+[0] ImportError: cannot import name 'config' from 'backend' (C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\__init__.py)
+[0] Process SpawnProcess-7:
+[0] Traceback (most recent call last):
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 314, in _bootstrap
+[0]     self.run()
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\process.py", line 108, in run
+[0]     self._target(*self._args, **self._kwargs)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\_subprocess.py", line 80, in subprocess_started
+[0]     target(sockets=sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 65, in run
+[0]     return asyncio.run(self.serve(sockets=sockets))
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 194, in run
+[0]     return runner.run(main)
+[0]            ^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\runners.py", line 118, in run
+[0]     return self._loop.run_until_complete(task)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 687, in run_until_complete
+[0]     return future.result()
+[0]            ^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 69, in serve
+[0]     await self._serve(sockets)
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\server.py", line 76, in _serve
+[0]     config.load()
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\config.py", line 434, in load
+[0]     self.loaded_app = import_from_string(self.app)
+[0]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\.venv\Lib\site-packages\uvicorn\importer.py", line 19, in import_from_string
+[0]     module = importlib.import_module(module_str)
+[0]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\importlib\__init__.py", line 90, in import_module
+[0]     return _bootstrap._gcd_import(name[level:], package, level)
+[0]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[0]   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[0]   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[0]   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[0]   File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+[0]   File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+[0]   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[0]   File "C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\main.py", line 10, in <module>
+[0]     from . import config, models
+[0] ImportError: cannot import name 'config' from 'backend' (C:\Users\User\Downloads\Web Dashboard Interface Design (2)\backend\__init__.py)

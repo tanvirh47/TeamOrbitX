@@ -1,0 +1,212 @@
+﻿export function CityDigitalTwin({ onNavigate, activeLayers = [], onLayerToggle, onPointsEarned, environmentData, isLoading, error, onRefresh }: CityDigitalTwinProps) {
+  const initialLayers: LayerToggle[] = [
+    { id: 'heat', name: 'Heat Risk (LST)', icon: <Thermometer className="h-4 w-4" />, active: true, color: '#ff4444' },
+    { id: 'flood', name: 'Flood Risk', icon: <Droplets className="h-4 w-4" />, active: true, color: '#4488ff' },
+    { id: 'air', name: 'Air Quality (NO₂ / O₃)', icon: <Wind className="h-4 w-4" />, active: false, color: '#ff8844' },
+    { id: 'green', name: 'Greenness Index (NDVI)', icon: <Trees className="h-4 w-4" />, active: true, color: '#4CAF50' },
+    { id: 'community', name: 'Community Hotspots', icon: <MapPin className="h-4 w-4" />, active: false, color: '#ff6600' },
+  ];
+
+  const [layers, setLayers] = useState<LayerToggle[]>(initialLayers);
+  const [selectedMetric, setSelectedMetric] = useState<MetricKey | null>('heat_risk');
+  const [showMicroclimatePrediction, setShowMicroclimatePrediction] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState<{ lat: number; lon: number } | null>(null);
+
+  const defaultCenter = environmentData?.summary
+    ? { lat: environmentData.summary.center_lat, lon: environmentData.summary.center_lon }
+    : { lat: 40.7128, lon: -74.006 };
+
+  const [center, setCenter] = useState(defaultCenter);
+
+  useEffect(() => {
+    if (environmentData?.summary) {
+      setCenter({
+        lat: environmentData.summary.center_lat,
+        lon: environmentData.summary.center_lon,
+      });
+    }
+  }, [environmentData?.summary?.center_lat, environmentData?.summary?.center_lon]);
+
+  useEffect(() => {
+    if (typeof navigator === 'undefined' || !navigator.geolocation) {
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setCenter({
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        });
+      },
+      () => undefined,
+      { maximumAge: 60000 },
+    );
+  }, []);
+
+  const radiusKm = environmentData?.summary?.radius_km ?? 5;
+  const gridSize = 11;
+
+  const { data: mapOverview, loading: mapLoading, error: mapError, refetch: refetchMap } =
+    useMapOverview({
+      lat: center.lat,
+      lon: center.lon,
+      radiusKm,
+      gridSize,
+    });
+
+  const { config: gibsConfig, loading: gibsLoading, error: gibsError } = useGibsConfig();
+
+  const summaryStats = mapOverview?.summary.stats ?? environmentData?.summary?.stats;
+  const riskScores = mapOverview?.risks ?? environmentData?.risks;
+
+  useEffect(() => {
+    if (activeLayers.length === 0) {
+      return;
+    }
+
+    setLayers((prev) =>
+      prev.map((layer) => ({
+        ...layer,
+        active: activeLayers.includes(layer.id),
+      })),
+    );
+
+    const firstActive = RISK_LAYER_ORDER.find((layerId) => activeLayers.includes(layerId));
+    setSelectedMetric(firstActive ? METRIC_BY_LAYER[firstActive] : null);
+  }, [activeLayers]);
+
+  const toggleLayer = (id: string) => {
+    setLayers((prev) => {
+      const next = prev.map((layer) =>
+        layer.id === id ? { ...layer, active: !layer.active } : layer,
+      );
+
+      if (isRiskLayer(id)) {
+        const nextActive = next
+          .filter((layer) => layer.active && isRiskLayer(layer.id))
+          .map((layer) => layer.id as RiskLayerId);
+
+        if (nextActive.includes(id as RiskLayerId)) {
+          setSelectedMetric(METRIC_BY_LAYER[id as RiskLayerId]);
+        } else {
+          const fallback = RISK_LAYER_ORDER.find((layerId) => nextActive.includes(layerId));
+          setSelectedMetric(fallback ? METRIC_BY_LAYER[fallback] : null);
+        }
+      }
+
+      return next;
+    });
+
+    onLayerToggle?.(id);
+  };
+
+  const handleMetricSelect = (layerId: RiskLayerId) => {
+    const isActive = layers.some((layer) => layer.id === layerId && layer.active);
+    if (!isActive) {
+      toggleLayer(layerId);
+      return;
+    }
+    setSelectedMetric(METRIC_BY_LAYER[layerId]);
+  };
+
+  const overallLoading = Boolean(isLoading || mapLoading || gibsLoading);
+  const combinedError = error ?? mapError ?? gibsError;
+
+  const formatRiskValue = (value?: number) => (value != null ? value.toFixed(2) : '--');
+
+  const statusForMetric = (layerId: RiskLayerId, value?: number): MetricStatus => {
+    if (value == null) {
+      return 'neutral';
+    }
+
+    if (layerId === 'air') {
+      if (value >= 0.7) return 'good';
+      if (value >= 0.4) return 'warning';
+      return 'critical';
+    }
+
+    if (layerId === 'green') {
+      if (value >= 0.6) return 'good';
+      if (value >= 0.35) return 'warning';
+      return 'critical';
+    }
+
+    if (value < 0.4) return 'good';
+    if (value < 0.7) return 'warning';
+    return 'critical';
+  };
+
+  const statusLabel: Record<MetricStatus, string> = {
+    good: 'Low',
+    warning: 'Moderate',
+    critical: 'High',
+    neutral: '--',
+  };
+
+  const statusBadgeClass: Record<MetricStatus, string> = {
+    good: 'text-green-500 bg-green-500/10',
+    warning: 'text-orange-500 bg-orange-500/10',
+    critical: 'text-red-500 bg-red-500/10',
+    neutral: 'text-muted-foreground bg-muted/30',
+  };
+
+  const iconColor: Record<RiskLayerId, string> = {
+    heat: 'text-orange-500',
+    flood: 'text-blue-400',
+    air: 'text-purple-400',
+    green: 'text-green-500',
+  };
+
+  const metricCards = RISK_LAYER_ORDER.map((layerId) => {
+    const metricKey = METRIC_BY_LAYER[layerId];
+    const valueRaw = riskScores?.[metricKey];
+    let detail = '--';
+    let source = '';
+    let icon = <Thermometer className="h-4 w-4" />;
+    let label = '';
+
+    if (layerId === 'heat') {
+      label = 'Heat Risk (LST)';
+      icon = <Thermometer className="h-4 w-4" />;
+      detail = summaryStats?.lst_mean != null ? ${summaryStats.lst_mean.toFixed(1)}°C avg LST : 'Awaiting LST';
+      source = 'MODIS/VIIRS LST';
+    } else if (layerId === 'flood') {
+      label = 'Flood Risk';
+      icon = <Droplets className="h-4 w-4" />;
+      detail = summaryStats?.precipitation_mean != null ? ${summaryStats.precipitation_mean.toFixed(1)} mm/hr precip : 'Awaiting precipitation';
+      source = 'GPM IMERG + SRTM';
+    } else if (layerId === 'air') {
+      label = 'Air Quality (NO₂ / O₃)';
+      icon = <Wind className="h-4 w-4" />;
+      detail = summaryStats?.no2_mean != null ? ${summaryStats.no2_mean.toFixed(1)} ppb NO₂ : 'Awaiting TEMPO data';
+      source = 'TEMPO NO₂ / O₃';
+    } else {
+      label = 'Greenness Index (NDVI)';
+      icon = <Trees className="h-4 w-4" />;
+      detail = summaryStats?.ndvi_mean != null ? ${summaryStats.ndvi_mean.toFixed(2)} NDVI : 'Awaiting NDVI';
+      source = 'NASA HLS NDVI';
+    }
+
+    const status = statusForMetric(layerId, valueRaw);
+    const isActive = layers.some((layer) => layer.id === layerId && layer.active);
+    const isSelected = selectedMetric === metricKey;
+
+    return {
+      layerId,
+      metricKey,
+      label,
+      icon,
+      detail,
+      source,
+      value: formatRiskValue(valueRaw),
+      status,
+      statusLabel: statusLabel[status],
+      statusClass: statusBadgeClass[status],
+      iconClass: iconColor[layerId],
+      isActive,
+      isSelected,
+    };
+  });
+
+  const isCommunityLayerActive = layers.some((layer) => layer.id === 'community' && layer.active);

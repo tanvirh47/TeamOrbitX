@@ -1,0 +1,23 @@
+﻿        if (layerId === 'heat') {
+          label = 'Heat Risk (LST)';
+          icon = <Thermometer className="h-4 w-4" />;
+          detail = summaryStats?.lst_mean != null ? ${summaryStats.lst_mean.toFixed(1)}°C avg LST : 'Awaiting LST';
+          source = 'MODIS/VIIRS LST';
+        } else if (layerId === 'flood') {
+          label = 'Flood Risk';
+          icon = <Droplets className="h-4 w-4" />;
+          detail = summaryStats?.precipitation_mean != null ? ${summaryStats.precipitation_mean.toFixed(1)} mm/hr precip : 'Awaiting precipitation';
+          source = 'GPM IMERG + SRTM';
+        } else if (layerId === 'air') {
+          label = 'Air Quality (NO₂ / O₃)';
+          icon = <Wind className="h-4 w-4" />;
+          detail = summaryStats?.no2_mean != null ? ${summaryStats.no2_mean.toFixed(1)} ppb NO₂ : 'Awaiting TEMPO data';
+          source = 'TEMPO NO₂ / O₃';
+        } else {
+          label = 'Greenness Index (NDVI)';
+          icon = <Trees className="h-4 w-4" />;
+          detail = summaryStats?.ndvi_mean != null ? ${summaryStats.ndvi_mean.toFixed(2)} NDVI : 'Awaiting NDVI';
+          source = 'NASA HLS NDVI';
+        }
+
+        const status =

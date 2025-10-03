@@ -1,0 +1,62 @@
+﻿  const metricCards = useMemo(
+    () =>
+      RISK_LAYER_ORDER.map((layerId) => {
+        const metricKey = METRIC_BY_LAYER[layerId];
+        const valueRaw = riskScores?.[metricKey];
+        const isActive = layers.some((layer) => layer.id === layerId && layer.active);
+        const isSelected = selectedMetric === metricKey;
+
+        let icon: ReactNode = null;
+        let label = '';
+        let detail = '--';
+        let source = '';
+
+        switch (layerId) {
+          case 'heat':
+            icon = <Thermometer className="h-4 w-4" />;
+            label = 'Heat Risk (LST)';
+            detail = summaryStats?.lst_mean != null ? ${summaryStats.lst_mean.toFixed(1)} C avg LST : 'Awaiting LST';
+            source = 'MODIS/VIIRS LST';
+            break;
+          case 'flood':
+            icon = <Droplets className="h-4 w-4" />;
+            label = 'Flood Risk';
+            detail = summaryStats?.precipitation_mean != null ? ${summaryStats.precipitation_mean.toFixed(1)} mm/hr precip : 'Awaiting precipitation';
+            source = 'GPM IMERG + SRTM';
+            break;
+          case 'air':
+            icon = <Wind className="h-4 w-4" />;
+            label = 'Air Quality (NO2 / O3)';
+            detail = summaryStats?.no2_mean != null ? ${summaryStats.no2_mean.toFixed(1)} ppb NO2 : 'Awaiting TEMPO data';
+            source = 'TEMPO NO2 / O3';
+            break;
+          case 'green':
+            icon = <Trees className="h-4 w-4" />;
+            label = 'Greenness Index (NDVI)';
+            detail = summaryStats?.ndvi_mean != null ? ${summaryStats.ndvi_mean.toFixed(2)} NDVI : 'Awaiting NDVI';
+            source = 'NASA HLS NDVI';
+            break;
+          default:
+            break;
+        }
+
+        const status = statusForMetric(layerId, valueRaw);
+
+        return {
+          layerId,
+          metricKey,
+          label,
+          icon,
+          detail,
+          source,
+          value: formatRiskValue(valueRaw),
+          status,
+          statusLabel: statusLabel[status],
+          statusClass: statusBadgeClass[status],
+          iconClass: iconColor[layerId],
+          isActive,
+          isSelected,
+        };
+      }),
+    [layers, selectedMetric, summaryStats, riskScores],
+  );
